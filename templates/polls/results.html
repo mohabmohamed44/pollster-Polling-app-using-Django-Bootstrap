@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 class="mb-4">{{ question.question_text }}</h1>
+
+            <ul class="list-group mb-4">
+                {% for choice in question.choice_set.all %}
+                    <li class="list-group-item">
+                        {{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <a href="{% url 'polls:index' %}" class="btn btn-primary">Back to the list of questions</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

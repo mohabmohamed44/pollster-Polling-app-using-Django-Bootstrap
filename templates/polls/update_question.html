@@ -1,10 +1,80 @@
+{% include 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title></title>
 </head>
 <body>
-$END$
+    {% block content %}
+    <div class="container">
+        <h1 class="my-4">Update Question</h1>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+        {{ formset.management_form }}
+
+        <!-- Question Input -->
+        <div class="mb-3">
+            <label for="id_question_text" class="form-label">Question</label>
+            {{ question_form.question_text }}
+        </div>
+
+        <!-- Choices Section -->
+        <h3>Choices:</h3>
+        <table class="table" id="choices-table">
+            <thead>
+                <tr>
+                    <th>Choice Text</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for form in formset %}
+                    <tr>
+                        <td>
+                            {{ form.choice_text }}
+                        </td>
+                        <td>
+                            {{ form.DELETE }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Add Choice Button -->
+        <button type="button" id="add-choice-btn" class="btn btn-secondary my-3">Add Choice</button>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Update Question</button>
+        </form>
+         <a href="{% url 'polls:index' %}" class="btn btn-secondary mt-4">Back to Question List</a>
+    </div>
+
+    <script>
+    // Track current formset index
+    let formsetIndex = {{ formset.total_form_count }};
+
+    // Add event listener for the "Add Choice" button
+    document.getElementById('add-choice-btn').addEventListener('click', function() {
+        let tableBody = document.getElementById('choices-table').getElementsByTagName('tbody')[0];
+        let newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>
+                <input type="text" name="form-${formsetIndex}-choice_text" id="id_form-${formsetIndex}-choice_text" class="form-control" required>
+            </td>
+            <td>
+                <input type="checkbox" name="form-${formsetIndex}-DELETE" id="id_form-${formsetIndex}-DELETE">
+            </td>
+        `;
+        tableBody.appendChild(newRow);
+
+        // Increment formset index
+        formsetIndex++;
+        document.getElementById('id_form-TOTAL_FORMS').value = formsetIndex;
+    });
+    </script>
+{% endblock %}
 </body>
 </html>

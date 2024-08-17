@@ -1,0 +1,64 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+
+# Django
+*.sqlite3
+db.sqlite3
+
+# ENV
+.env
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Migrations
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Static files
+staticfiles/
+static/
+
+# Media files
+media/
+.idea/
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+
+# Unit test / Coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Environments
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# MacOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+
+# PyCharm
+.idea/

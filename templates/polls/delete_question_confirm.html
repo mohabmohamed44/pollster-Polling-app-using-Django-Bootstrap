@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Confirm Deletion{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Confirm Deletion</h1>
+    <p>Are you sure you want to delete the question: <strong>{{ question.question_text }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'polls:index' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

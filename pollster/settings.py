@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rj8*(87zbb=m5m^yscuo8k+)cfg3j9%yoy=3lqhme!h&7922gl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'deep-clarette-newcairoacademy-bca48fd9.koyeb.app', '*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
